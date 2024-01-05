@@ -1,2 +1,2 @@
 # SnowCrash
-This is my fist project about Cybersecurity
+This is our fist project about Cybersecurity
