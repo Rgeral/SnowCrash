@@ -1,29 +1,42 @@
 #!/usr/bin/env perl
-# localhost:4646
-use CGI qw{param};
-print "Content-type: text/html\n\n";
+
+use strict;
+use warnings;
+
+# Récupérer les paramètres de la ligne de commande
+my $x = shift @ARGV || "";
+my $y = shift @ARGV || "";
+
+# Votre code ici
+# Utilisez les variables $x et $y comme vous le feriez avec les paramètres CGI
+
+print "Contenu-type: text/html\n\n";
 
 sub t {
-  $nn = $_[1];
-  $xx = $_[0];
-  $xx =~ tr/a-z/A-Z/; 
-  $xx =~ s/\s.*//;
-  @output = `egrep "^$xx" /tmp/xd 2>&1`;
-  foreach $line (@output) {
-      ($f, $s) = split(/:/, $line);
-      if($s =~ $nn) {
-          return 1;
-      }
-  }
-  return 0;
+    my ($nn, $xx) = @_;
+    $xx =~ tr/a-z/A-Z/;
+    $xx =~ s/\s.*//;
+    my @output = `egrep "^$xx" ./xd 2>&1`;
+    print $xx;
+    print("\n===\n");
+    print @output;
+    foreach my $line (@output) {
+        print("lines\n");
+        print $line;
+        my ($f, $s) = split(/:/, $line);
+        if ($s =~ $nn) {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 sub n {
-  if($_[0] == 1) {
-      print("..");
-  } else {
-      print(".");
-  }    
+    if ($_[0] == 1) {
+        print("..");
+    } else {
+        print(".");
+    }
 }
 
-n(t(param("x"), param("y")));
+n(t($y, $x));
