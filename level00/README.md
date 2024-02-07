@@ -6,4 +6,4 @@ I looked for a solution, and in the end, it was quite simple: redirecting the er
 With this, I found two files that provided some kind of password: 'cdiiddwpgswtgy.' 
 However, this password didn't seem to work to advance to the next level, so I started looking into how to decrypt it.
 
-I passed this password to ChatGPT, which mentioned a letter substitution (Cesar). I then visited a website that allowed decryption using this method, and I found the following result: 'notohardhere.' That's the password!
+I passed this password to ChatGPT, which mentioned a letter substitution (Cesar). I then visited a website that allowed decryption using this method, and I found the following result: 'nottohardhere.' That's the password!
