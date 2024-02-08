@@ -31,5 +31,10 @@ This is the intersting part :
 
   Just need to change our env with : export LOGNAME='$(getflag)'
   and we get :
-./level07 
+
+/*********************************************************\
+
+level07@SnowCrash:~$ ./level07 
 Check flag.Here is your token : fiumuikeil55xe9cu4dood66h
+
+\*********************************************************/

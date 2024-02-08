@@ -1,6 +1,0 @@
-In the beginning, I didn't quite find what needed to be done, so I started looking for where the user passwords were stored on a Linux machine, and I found the files '/etc/shadow' and '/etc/passwd' (see the files in the resources). 
-I noticed that the 'flag01' line was different and contained some sort of password. 
-The password didn't work to move on to the next level.
-
-While researching, I discovered the software JohnTheRipper, which seems to be designed for decrypting passwords. I transferred the passwd file to my machine and used JTR to decrypt it:
-It gave me 'abcdefg'.

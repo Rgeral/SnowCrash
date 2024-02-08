@@ -1,12 +1,12 @@
 We have again a ./level09 and a token, 
 When we execute the token whith level09 we get this : 
-tpmhr
+'tpmhr'
 
 so we saw quite fast that 
+./level09 Tpmhr
 Token
-Tpmhr
 
-Was just a +1 of the given letter so we made a Python sript that could reverse the program effect.
+Was just a +1 of the given letter index so we made a Python script that could reverse the program effect.
 
 def decrypt_token(hex_chars):
     result = []
@@ -24,4 +24,9 @@ Then we cat token that give us : f4kmm6p|=�p�n��DB�Du{��
 We put this in our programm and we get : f3iji1ju5yuevaus41q1afiuq
 su flag 09 work.
 
-Here is our flag : s5cAJpM8ev6XHw998pRWG728z
+/*********************************************************\
+
+flag09@SnowCrash:~$ getflag 
+Check flag.Here is your token : s5cAJpM8ev6XHw998pRWG728z
+
+\*********************************************************/
