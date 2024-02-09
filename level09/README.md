@@ -1,13 +1,14 @@
-We have again a ./level09 and a token, 
-When we execute the token whith level09 we get this : 
-'tpmhr'
+# SnowCrash Level 09
 
-so we saw quite fast that 
-./level09 Tpmhr
-Token
+## Introduction
+Welcome to SnowCrash Level 09! In this level, we encounter the executable file `level09` and a mysterious token. Let's unravel the mystery together.
 
-Was just a +1 of the given letter index so we made a Python script that could reverse the program effect.
+## Initial Observation
+Upon executing `level09` with the token, we received the following output: `'tpmhr'`. Quickly discerning a pattern, we realized that the program was performing a simple Caesar cipher with a shift of +1 on each letter.
 
+## Deciphering the Token
+Understanding the encryption mechanism, we swiftly devised a Python script to reverse the effect of the program:
+```
 def decrypt_token(hex_chars):
     result = []
     for i, hex_char in enumerate(hex_chars):
@@ -19,14 +20,17 @@ def decrypt_token(hex_chars):
 hex_chars = ['66', '34', '6b', '6d', '6d', '36', '70', '7c', '3d', '82', '7f', '70', '82', '6e', '83', '82', '44', '42', '83', '44', '75', '7b', '7f', '8c', '89']
 decrypted_result = decrypt_token(hex_chars)
 print(decrypted_result)
+```
+The decrypted token obtained from `cat token` was: `f4kmm6p|=�p�n��DB�Du{��`.
 
-Then we cat token that give us : f4kmm6p|=�p�n��DB�Du{��
-We put this in our programm and we get : f3iji1ju5yuevaus41q1afiuq
-su flag 09 work.
+## Success
+We substituted the decrypted token into the program and received: `f3iji1ju5yuevaus41q1afiuq`. Success! We obtained the flag for Level 09.
 
-/*********************************************************\
-
+## Obtaining the Token
+After logging in as `flag09` and executing `getflag`, we obtained our token:
+```
 flag09@SnowCrash:~$ getflag 
-Check flag.Here is your token : s5cAJpM8ev6XHw998pRWG728z
+Check flag. Here is your token: s5cAJpM8ev6XHw998pRWG728z
+```
+Congratulations! You have successfully conquered Level 09. Keep up the great work!
 
-\*********************************************************/
