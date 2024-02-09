@@ -1,16 +1,14 @@
-Here we have nothing to interact with.
-After minutes of thinking we asked oursleves "Should we analyze Getflag ?"
-We put Getflag in Ghidra, and we found that the code to decrypt all the flags were ft_des, so we just put the last encrypted token in our code from the level 13, and we got the flag.
+# SnowCrash Level 14
 
-7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
+## Introduction
+Here we have nothing to interact with. After minutes of thinking, we asked ourselves, "Should we analyze Getflag?" We put Getflag in Ghidra and found that the code to decrypt all the flags was `ft_des`, so we just put the last encrypted token from Level 13 in our code, and we got the flag.
+
+## Obtaining the Token
+After running our decryption code:
 
 level14@SnowCrash:/bin$ su flag14
 Password: 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
-Congratulation. Type getflag to get the key and send it to me the owner of this livecd :)
-
-/*********************************************************\
 
 flag14@SnowCrash:~$ getflag
-Check flag.Here is your token : 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
+Check flag. Here is your token: 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
 
-\*********************************************************/
